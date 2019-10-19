@@ -42,7 +42,6 @@
       - https://github.com/prisma-labs/graphql-yoga
       - yarn add graphql-yoga
       - graphql을 편하게 사용할 수 있게 만들어진 오픈소스 패키지인데 graphql server를 진짜 쉽고 편하게 사용할 수 있게 해줌 => 실은 그냥 graphql을 써보진 않아서 비교불가
-      - graphql로 개발한다? => 그럼 요녀석으로 개발하도록 하자
    2. nodemon
       - https://nodemon.io/
       - yarn add nodemon -D
@@ -222,29 +221,37 @@
    - src 폴더 안에 App.js랑 index.js만 두고 다 지워준다
    - public 폴더 안에 favicon.ico, index.html, manifest.json 빼고 다 지운다
    - App.js 소스 수정 및 src/Components 폴더로 이동
-      import React, { Component } from "react";
-
-      class App extends Component {
-      render() {
-         return <div className="App" />;
-      }
-      }
-
-      export default App;
-
-   - index.js 소스 수정
       import React from "react";
-      import ReactDOM from "react-dom";
-      import App from "./Components/App";
+      import GlobalStyles from "../Styles/GlobalStyles";
+      import { ThemeProvider } from "styled-components";
 
-      ReactDOM.render(<App />, document.getElementById("root"));
+      export default () => (
+      <ThemeProvider theme={Theme}>
+         <GlobalStyles />
+         hello
+      </ThemeProvider>
+      );
 3. dependency
    1. graphql
+      - query 언어~
    2. react-router-dom
+      - react-router 모듈에 dom이 binding 되어있는 모듈 => date binding 해준다는 거임
    3. react-apollo-hooks
+      - Apollo Client에서 GraphQL API를 호출할 수 있게 해주는 모듈
    4. react-helmet
-   5. apollo-boost
-   6. styled-components
+      - head tag를 사용할 수 있게해줌 => title, base, meta 같은거
+   5. react-toastify
+      - notification 기능을 쉽게 추가해줌
+   6. apollo-boost
+      - GraphQL Client 패키지
+   7. styled-components
+      - css 관련
+   8. styled-reset
+      - css 관련
+4. Styles
+   - src/Styles 폴더 생성 => GlobalStyles.js, Theme.js 파일 생성
+   - GlobalStyles.js
+   - Theme.js => 공통으로 사용하는 색상이나 레이아웃 설정들을 저장해놓으면 편함!
       
 ## 유용한 패키지들 or 사이트들
 
@@ -279,6 +286,8 @@
    - https://randomkeygen.com/
    - 서명 등에 사용할 키조합을 랜덤으로 생성해주는 사이트 => CodeIgniter Encryption Keys 부분 키로 하는 가져오는 편
    - 정말 중요한 키인 경우가 99%이상이니 꼭 .env에 저장해주자
+5. ColorZilla
+   - web에서 색상 정보 가져오는 chrome 앱
 
 ## 유용한 정보들
 
