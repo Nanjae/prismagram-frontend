@@ -260,6 +260,13 @@
    - src/Components 안의 Router.js에서 각 Routes path로 이동할 조건에 맞으면 이동시킴
    - src/Routes 안의 [pathName].js 파일에서 화면 구성을 함
    - 이렇게 하니까 보기도 좋고 관리하기도 편한거 같음
+3. Apollo Client
+   - 백엔드에서 만들어 놓은 GraphQL을 쓰기위해 사용
+   1. Client.js
+   - Client를 통해 GraphQL Server에 만들어진 resolver들 이용해 query에 맞는 데이터를 받는다고 보면 됨
+   2. LocalState.js
+      - LocalState란 App의 오프라인 상태에서 발생하는 건데 => 로그인 된 상태인지 아닌지 판단하는 용으로만 쓸거임
+      - 실은 뭔지 잘 모르겠음 아직 => 해봐야 알듯
       
 ## 유용한 패키지들 or 사이트들
 
