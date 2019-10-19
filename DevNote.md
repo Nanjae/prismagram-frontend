@@ -228,7 +228,6 @@
       export default () => (
       <ThemeProvider theme={Theme}>
          <GlobalStyles />
-         hello
       </ThemeProvider>
       );
 3. dependency
@@ -248,10 +247,19 @@
       - css 관련
    8. styled-reset
       - css 관련
-4. Styles
+   9. prop-types
+      - data의 type으로 유효성 검사해줌
+
+## 프론트엔드 구성
+1. Styles
    - src/Styles 폴더 생성 => GlobalStyles.js, Theme.js 파일 생성
    - GlobalStyles.js
-   - Theme.js => 공통으로 사용하는 색상이나 레이아웃 설정들을 저장해놓으면 편함!
+   - Theme.js => 공통으로 사용하는 색상이나 레이아웃 설정들을 저장해놓으면 편함
+2. Routes
+   - 화면 이동이 생길 경우 Routes 폴더 안에 생성한 각 화면으로 이동되도록 만들거임
+   - src/Components 안의 Router.js에서 각 Routes path로 이동할 조건에 맞으면 이동시킴
+   - src/Routes 안의 [pathName].js 파일에서 화면 구성을 함
+   - 이렇게 하니까 보기도 좋고 관리하기도 편한거 같음
       
 ## 유용한 패키지들 or 사이트들
 
