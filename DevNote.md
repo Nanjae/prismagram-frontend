@@ -251,11 +251,11 @@
       - data의 type으로 유효성 검사해줌
 
 ## 프론트엔드 구성
-1. Styles
+1. GlobalStyles and Theme
    - src/Styles 폴더 생성 => GlobalStyles.js, Theme.js 파일 생성
    - GlobalStyles.js
    - Theme.js => 공통으로 사용하는 색상이나 레이아웃 설정들을 저장해놓으면 편함
-2. Routes
+2. React Router
    - 화면 이동이 생길 경우 Routes 폴더 안에 생성한 각 화면으로 이동되도록 만들거임
    - src/Components 안의 Router.js에서 각 Routes path로 이동할 조건에 맞으면 이동시킴
    - src/Routes 안의 [pathName].js 파일에서 화면 구성을 함
@@ -267,6 +267,7 @@
    2. LocalState.js
       - LocalState란 App의 오프라인 상태에서 발생하는 건데 => 로그인 된 상태인지 아닌지 판단하는 용으로만 쓸거임
       - 실은 뭔지 잘 모르겠음 아직 => 해봐야 알듯
+4. Hook Query
       
 ## 유용한 패키지들 or 사이트들
 
