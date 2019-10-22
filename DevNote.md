@@ -243,6 +243,7 @@
    4. react-helmet
       - head tag를 사용할 수 있게해줌 => title, base, meta 같은거
    5. react-toastify
+      - https://www.npmjs.com/package/react-toastify
       - notification 기능을 쉽게 추가해줌
    6. apollo-boost
       - GraphQL Client 패키지
@@ -309,6 +310,7 @@
 5. ColorZilla
    - web에서 색상 정보 가져오는 chrome 앱
 6. Page Ruler Redux
+   - 격자 재는 chrome 앱
 
 ## 유용한 정보들
 
