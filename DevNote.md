@@ -215,21 +215,24 @@
       - prisma.function() 형태로 사용
 
 ## 프론트엔드 프로젝트 생성
+
 1. npx create-react-app [projectName]
    - npx 없으면 깔고 저거 해주면 알아서 프로젝트 잘 만들어 준다
 2. clean up src folder
+
    - src 폴더 안에 App.js랑 index.js만 두고 다 지워준다
    - public 폴더 안에 favicon.ico, index.html, manifest.json 빼고 다 지운다
    - App.js 소스 수정 및 src/Components 폴더로 이동
-      import React from "react";
-      import GlobalStyles from "../Styles/GlobalStyles";
-      import { ThemeProvider } from "styled-components";
+     import React from "react";
+     import GlobalStyles from "../Styles/GlobalStyles";
+     import { ThemeProvider } from "styled-components";
 
-      export default () => (
-      <ThemeProvider theme={Theme}>
-         <GlobalStyles />
-      </ThemeProvider>
-      );
+     export default () => (
+     <ThemeProvider theme={Theme}>
+     <GlobalStyles />
+     </ThemeProvider>
+     );
+
 3. dependency
    1. graphql
       - query 언어~
@@ -251,6 +254,7 @@
       - data의 type으로 유효성 검사해줌
 
 ## 프론트엔드 구성
+
 1. GlobalStyles and Theme
    - src/Styles 폴더 생성 => GlobalStyles.js, Theme.js 파일 생성
    - GlobalStyles.js
@@ -268,7 +272,7 @@
       - LocalState란 App의 오프라인 상태에서 발생하는 건데 => 로그인 된 상태인지 아닌지 판단하는 용으로만 쓸거임
       - 실은 뭔지 잘 모르겠음 아직 => 해봐야 알듯
 4. Hook Query
-      
+
 ## 유용한 패키지들 or 사이트들
 
 1. send mail
@@ -304,6 +308,7 @@
    - 정말 중요한 키인 경우가 99%이상이니 꼭 .env에 저장해주자
 5. ColorZilla
    - web에서 색상 정보 가져오는 chrome 앱
+6. Page Ruler Redux
 
 ## 유용한 정보들
 
