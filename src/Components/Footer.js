@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+const FooterWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 1012px;
+  width: 100%;
+`;
+
 const Footer = styled.footer`
   display: flex;
   justify-content: space-between;
@@ -27,44 +33,46 @@ const Copyright = styled.span`
 `;
 
 export default () => (
-  <Footer>
-    <List>
-      <ListItem>
-        <Link href="#">INSTAGRAM 정보</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">지원</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">홍보 센터</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">API</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">채용 정보</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">개인정보처리방침</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">약관</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">디렉터리</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">프로필</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">해시태그</Link>
-      </ListItem>
-      <ListItem>
-        <Link href="#">언어</Link>
-      </ListItem>
-    </List>
-    <Copyright>
-      &copy; {new Date().getFullYear()} INSTAGRAM CLONE FROM JAEUK LEE
-    </Copyright>
-  </Footer>
+  <FooterWrapper>
+    <Footer>
+      <List>
+        <ListItem>
+          <Link href="#">INSTAGRAM 정보</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">지원</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">홍보 센터</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">API</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">채용 정보</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">개인정보처리방침</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">약관</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">디렉터리</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">프로필</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">해시태그</Link>
+        </ListItem>
+        <ListItem>
+          <Link href="#">언어</Link>
+        </ListItem>
+      </List>
+      <Copyright>
+        &copy; {new Date().getFullYear()} INSTAGRAM CLONE FROM JAEUK LEE
+      </Copyright>
+    </Footer>
+  </FooterWrapper>
 );
