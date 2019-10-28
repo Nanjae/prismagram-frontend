@@ -13,10 +13,8 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   padding: 25px 0px;
-  position: fixed;
-  top: 0;
-  left: 0;
   border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  margin-bottom: 60px;
 `;
 
 const HeaderWrapper = styled.div`
