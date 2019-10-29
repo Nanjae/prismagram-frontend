@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Instagram, Compass, HeartEmpty, User } from "./Icons";
+import { Link, withRouter } from "react-router-dom";
+import { gql } from "apollo-boost";
+import { Logo, Compass, HeartEmpty, User } from "./Icons";
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
+import { useQuery } from "react-apollo-hooks";
 
 const Header = styled.header`
   background-color: white;
@@ -55,18 +57,33 @@ const HeaderLink = styled(Link)`
   }
 `;
 
-export default () => {
+const ME = gql`
+  {
+    me {
+      username
+    }
+  }
+`;
+
+export default withRouter(({ history }) => {
   const search = useInput("");
+  const { data } = useQuery(ME);
+  const onSearchSubmit = e => {
+    e.preventDefault();
+    history.push(`/search?term=${search.value}`);
+  };
   return (
     <Header>
       <HeaderWrapper>
         <HeaderColumn>
           <Link to="/">
-            <Instagram />
+            <Logo />
           </Link>
         </HeaderColumn>
         <HeaderColumn>
-          <SearchInput {...search} placeholder="검색" />
+          <form onSubmit={onSearchSubmit}>
+            <SearchInput {...search} placeholder="검색" />
+          </form>
         </HeaderColumn>
         <HeaderColumn>
           <HeaderLink to="/explore">
@@ -75,11 +92,17 @@ export default () => {
           <HeaderLink to="/notifications">
             <HeartEmpty />
           </HeaderLink>
-          <HeaderLink to="/username">
-            <User />
-          </HeaderLink>
+          {!data ? (
+            <HeaderLink to="/#">
+              <User />
+            </HeaderLink>
+          ) : (
+            <HeaderLink to={data.me.username}>
+              <User />
+            </HeaderLink>
+          )}
         </HeaderColumn>
       </HeaderWrapper>
     </Header>
   );
-};
+});
