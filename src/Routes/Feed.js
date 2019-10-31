@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
 import Loader from "../Components/Loader";
+import Post from "../Components/Post";
 
 const FEED_QUERY = gql`
   {
@@ -38,18 +39,31 @@ const FEED_QUERY = gql`
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  min-height: 60vh;
+  min-height: 80vh;
 `;
 
 export default () => {
   const { data, loading } = useQuery(FEED_QUERY);
-  if (loading) {
-    return (
-      <Wrapper>
-        <Loader />
-      </Wrapper>
-    );
-  } else {
-    return <Wrapper></Wrapper>;
-  }
+  return (
+    <Wrapper>
+      {loading && <Loader />}
+      {!loading &&
+        data &&
+        data.seeFeed &&
+        data.seeFeed.map(post => (
+          <Post
+            key={post.id}
+            id={post.id}
+            location={post.location}
+            caption={post.caption}
+            user={post.user}
+            files={post.files}
+            likeCount={post.likeCount}
+            isLiked={post.isLiked}
+            comments={post.comments}
+            createdAt={post.createdAt}
+          />
+        ))}
+    </Wrapper>
+  );
 };

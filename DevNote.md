@@ -311,6 +311,7 @@
    - web에서 색상 정보 가져오는 chrome 앱
 6. Page Ruler Redux
    - 격자 재는 chrome 앱
+7. react-autosize-textarea
 
 ## 유용한 정보들
 
