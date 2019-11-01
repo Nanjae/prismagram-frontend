@@ -31,7 +31,7 @@ const Files = styled.div`
   flex-direction: column;
   align-items: stretch;
   flex-shrink: 0;
-  padding-bottom: 400px;
+  padding-bottom: 100%;
 `;
 
 const File = styled.div`
@@ -42,7 +42,7 @@ const File = styled.div`
   background-position: center;
   max-width: 100%;
   width: 100%;
-  height: 400px;
+  height: 610px;
   opacity: ${props => (props.showing ? 1 : 0)};
   transition: opacity 0.5s linear;
 `;
