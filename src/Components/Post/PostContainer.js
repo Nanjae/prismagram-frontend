@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import useInput from "../Input";
+import useInput from "../../Hooks/useInput";
 import PostPresenter from "./PostPresenter";
 import { useMutation } from "react-apollo-hooks";
 import { TOGGLE_LIKE, ADD_COMMENT } from "./PostQueries";
@@ -19,6 +19,7 @@ const PostContainer = ({
   const [isLikedS, setIsLiked] = useState(isLiked);
   const [likeCountS, setLikeCount] = useState(likeCount);
   const [currentItem, setCurrentItem] = useState(0);
+  const [selfComments, setSelfComments] = useState([]);
   const comment = useInput("");
   const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
     variables: { postId: id }
@@ -49,6 +50,27 @@ const PostContainer = ({
     }
   };
 
+  const onKeyPress = async event => {
+    const { which } = event;
+    if (which === 13) {
+      event.preventDefault();
+      const {
+        data: { addComment }
+      } = await addCommentMutation();
+      setSelfComments([...selfComments, addComment]);
+      comment.setValue("");
+    }
+  };
+
+  const onSubmit = async event => {
+    event.preventDefault();
+    const {
+      data: { addComment }
+    } = await addCommentMutation();
+    setSelfComments([...selfComments, addComment]);
+    comment.setValue("");
+  };
+
   return (
     <PostPresenter
       location={location}
@@ -64,6 +86,9 @@ const PostContainer = ({
       setLikeCount={setLikeCount}
       currentItem={currentItem}
       toggleLike={toggleLike}
+      onKeyPress={onKeyPress}
+      selfComments={selfComments}
+      onSubmit={onSubmit}
     />
   );
 };
@@ -92,8 +117,7 @@ PostContainer.propTypes = {
       user: PropTypes.shape({
         id: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired
-      }).isRequired,
-      createdAt: PropTypes.string.isRequired
+      }).isRequired
     })
   ).isRequired,
   createdAt: PropTypes.string.isRequired

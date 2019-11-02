@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
-import { HeartFull, HeartEmpty, Comment } from "../Icons";
+import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
 import Avatar from "../Avatar";
 import FatText from "../FatText";
 
@@ -52,7 +52,14 @@ const Button = styled.span`
   cursor: pointer;
 `;
 
-const SubmitButton = styled(Button)`
+const CanSubmitButton = styled(Button)`
+  color: ${props => props.theme.blueColor};
+  font-weight: 600;
+  padding-left: 10px;
+`;
+
+const CannotSubmitButton = styled(Button)`
+  opacity: 0.5;
   color: ${props => props.theme.blueColor};
   font-weight: 600;
   padding-left: 10px;
@@ -74,8 +81,8 @@ const Buttons = styled.div`
   margin-bottom: 10px;
 `;
 
-const TimeStamp = styled.span`
-  padding-top: 10px;
+const TimeStamp = styled.div`
+  padding-top: 6px;
   font-size: 10px;
   color: ${prop => prop.theme.greyColor};
 `;
@@ -105,6 +112,20 @@ const TextArea = styled(TextareaAutosize)`
   }
 `;
 
+const Comments = styled.ul``;
+
+const Comment = styled.li`
+  padding-top: 6px;
+`;
+
+const Caption = styled.div`
+  padding-top: 6px;
+`;
+
+const CaptionComments = styled.div`
+  padding-top: 6px;
+`;
+
 export default ({
   location,
   caption,
@@ -115,10 +136,11 @@ export default ({
   comments,
   createdAt,
   newComment,
-  setIsLiked,
-  setLikeCount,
   currentItem,
-  toggleLike
+  toggleLike,
+  onKeyPress,
+  selfComments,
+  onSubmit
 }) => {
   return (
     <Post>
@@ -146,15 +168,45 @@ export default ({
             {isLiked ? <HeartFull /> : <HeartEmpty />}
           </Button>
           <Button>
-            <Comment />
+            <CommentIcon />
           </Button>
         </Buttons>
-        <FatText text={`${likeCount}명이 좋아합니다`} />
-        <TimeStamp>{createdAt}</TimeStamp>
+        <FatText text={`좋아요 ${likeCount}개`} />
+        <CaptionComments>
+          {caption && (
+            <Caption>
+              <FatText text={username} /> {caption}
+            </Caption>
+          )}
+          {comments && (
+            <Comments>
+              {comments.map(comment => (
+                <Comment key={comment.id}>
+                  <FatText text={comment.user.username} /> {comment.text}
+                </Comment>
+              ))}
+              {selfComments.map(comment => (
+                <Comment key={comment.id}>
+                  <FatText text={comment.user.username} /> {comment.text}
+                </Comment>
+              ))}
+            </Comments>
+          )}
+          <TimeStamp>{createdAt}</TimeStamp>
+        </CaptionComments>
       </Meta>
       <TextAreaWrapper>
-        <TextArea placeholder={"댓글 달기..."} value={newComment.value} />
-        <SubmitButton>게시</SubmitButton>
+        <TextArea
+          placeholder={"댓글 달기..."}
+          value={newComment.value}
+          onChange={newComment.onChange}
+          onKeyPress={onKeyPress}
+        />
+        {newComment.value === "" ? (
+          <CannotSubmitButton>게시</CannotSubmitButton>
+        ) : (
+          <CanSubmitButton onClick={onSubmit}>게시</CanSubmitButton>
+        )}
       </TextAreaWrapper>
     </Post>
   );
