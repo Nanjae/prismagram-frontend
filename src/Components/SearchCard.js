@@ -4,17 +4,36 @@ import Avatar from "./Avatar";
 import FatText from "./FatText";
 import PropTypes from "prop-types";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 const Card = styled.div`
+  ${props => props.theme.whiteBox}
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+`;
+
+const FollowButton = styled(Button)`
+  width: 65px;
+  height: 30px;
+  padding: 5px 8px;
+`;
+
+const ELink = styled(Link)`
+  margin-bottom: 20px;
+  color: inherit;
 `;
 
 const UserCard = ({ username, isFollowing, url, isSelf }) => (
   <Card>
-    <Avatar url={url} />
-    <FatText text={username} />
-    {!isSelf && <Button text={isFollowing ? "팔로우 취소" : "팔로우"} />}
+    <ELink to={`/${username}`}>
+      <Avatar url={url} size="md" />
+    </ELink>
+    <ELink to={`/${username}`}>
+      <FatText text={username} />
+    </ELink>
+    {isSelf && <FollowButton text={isFollowing ? "팔로우 취소" : "팔로우"} />}
   </Card>
 );
 

@@ -6,11 +6,18 @@ import Loader from "../../Components/Loader";
 import UserCard from "../../Components/SearchCard";
 
 const Wrapper = styled.div`
-  height: 50vh;
+  height: 610px;
   text-align: center;
 `;
 
-const Section = styled.div``;
+const Section = styled.div`
+  margin-bottom: 50px;
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 170px;
+  grid-auto-rows: 170px;
+`;
 
 const SearchPresenter = ({ searchTerm, loading, data }) => {
   if (searchTerm === undefined) {
