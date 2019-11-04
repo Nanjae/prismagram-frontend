@@ -4,6 +4,7 @@ import TextareaAutosize from "react-autosize-textarea";
 import { HeartFull, HeartEmpty, CommentEmpty } from "../Icons";
 import Avatar from "../Avatar";
 import FatText from "../FatText";
+import { Link } from "react-router-dom";
 
 const Post = styled.div`
   ${props => props.theme.whiteBox};
@@ -11,6 +12,9 @@ const Post = styled.div`
   max-width: 610px;
   user-select: none;
   height: fit-content;
+  a {
+    color: inherit;
+  }
 `;
 
 const Header = styled.header`
@@ -149,7 +153,9 @@ export default ({
       <Header>
         <Avatar size="sm" url={avatar} />
         <UserColumn>
-          <FatText text={username} />
+          <Link to={`/${username}`}>
+            <FatText text={username} />
+          </Link>
           <Location>{location}</Location>
         </UserColumn>
       </Header>
@@ -177,19 +183,28 @@ export default ({
         <CaptionComments>
           {caption && (
             <Caption>
-              <FatText text={username} /> {caption}
+              <Link to={`/${username}`}>
+                <FatText text={username} />
+              </Link>{" "}
+              {caption}
             </Caption>
           )}
           {comments && (
             <Comments>
               {comments.map(comment => (
                 <Comment key={comment.id}>
-                  <FatText text={comment.user.username} /> {comment.text}
+                  <Link to={`/${comment.user.username}`}>
+                    <FatText text={comment.user.username} />
+                  </Link>{" "}
+                  {comment.text}
                 </Comment>
               ))}
               {selfComments.map(comment => (
                 <Comment key={comment.id}>
-                  <FatText text={comment.user.username} /> {comment.text}
+                  <Link to={`/${comment.user.username}`}>
+                    <FatText text={comment.user.username} />
+                  </Link>{" "}
+                  {comment.text}
                 </Comment>
               ))}
             </Comments>
