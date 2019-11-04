@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
-import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
+import { HeartFull, HeartEmpty, CommentEmpty } from "../Icons";
 import Avatar from "../Avatar";
 import FatText from "../FatText";
 
@@ -10,6 +10,7 @@ const Post = styled.div`
   width: 100%;
   max-width: 610px;
   user-select: none;
+  height: fit-content;
 `;
 
 const Header = styled.header`
@@ -32,7 +33,7 @@ const Files = styled.div`
   flex-direction: column;
   align-items: stretch;
   flex-shrink: 0;
-  padding-bottom: 100%;
+  padding-bottom: 75%;
 `;
 
 const File = styled.div`
@@ -43,7 +44,7 @@ const File = styled.div`
   background-position: center;
   max-width: 100%;
   width: 100%;
-  height: 610px;
+  height: 100%;
   opacity: ${props => (props.showing ? 1 : 0)};
   transition: opacity 0.5s linear;
 `;
@@ -63,6 +64,7 @@ const CannotSubmitButton = styled(Button)`
   color: ${props => props.theme.blueColor};
   font-weight: 600;
   padding-left: 10px;
+  cursor: unset;
 `;
 
 const Meta = styled.div`
@@ -168,7 +170,7 @@ export default ({
             {isLiked ? <HeartFull /> : <HeartEmpty />}
           </Button>
           <Button>
-            <CommentIcon />
+            <CommentEmpty />
           </Button>
         </Buttons>
         <FatText text={`좋아요 ${likeCount}개`} />

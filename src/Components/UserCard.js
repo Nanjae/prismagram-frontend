@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Avatar from "./Avatar";
 import FatText from "./FatText";
 import PropTypes from "prop-types";
-import Button from "./Button";
 import { Link } from "react-router-dom";
+import FollowButton from "./FollowButton";
 
 const Card = styled.div`
   ${props => props.theme.whiteBox}
@@ -14,18 +14,12 @@ const Card = styled.div`
   padding: 20px;
 `;
 
-const FollowButton = styled(Button)`
-  width: 65px;
-  height: 30px;
-  padding: 5px 8px;
-`;
-
 const ELink = styled(Link)`
   margin-bottom: 20px;
   color: inherit;
 `;
 
-const UserCard = ({ username, isFollowing, url, isSelf }) => (
+const UserCard = ({ username, isFollowing, url, isSelf, id }) => (
   <Card>
     <ELink to={`/${username}`}>
       <Avatar url={url} size="md" />
@@ -33,7 +27,7 @@ const UserCard = ({ username, isFollowing, url, isSelf }) => (
     <ELink to={`/${username}`}>
       <FatText text={username} />
     </ELink>
-    {isSelf && <FollowButton text={isFollowing ? "팔로우 취소" : "팔로우"} />}
+    {!isSelf && <FollowButton isFollowing={isFollowing} id={id} />}
   </Card>
 );
 

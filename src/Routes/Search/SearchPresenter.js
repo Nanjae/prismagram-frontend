@@ -3,7 +3,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import FatText from "../../Components/FatText";
 import Loader from "../../Components/Loader";
-import UserCard from "../../Components/SearchCard";
+import UserCard from "../../Components/UserCard";
+import SquarePost from "../../Components/SquarePost";
 
 const Wrapper = styled.div`
   height: 610px;
@@ -17,6 +18,12 @@ const Section = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 170px;
   grid-auto-rows: 170px;
+`;
+
+const PostSection = styled(Section)`
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 150px;
+  grid-auto-rows: 150px;
 `;
 
 const SearchPresenter = ({ searchTerm, loading, data }) => {
@@ -46,17 +53,25 @@ const SearchPresenter = ({ searchTerm, loading, data }) => {
                 isFollowing={user.isFollowing}
                 url={user.avatar}
                 isSelf={user.isSelf}
+                id={user.id}
               />
             ))
           )}
         </Section>
-        <Section>
+        <PostSection>
           {data.searchPost.length === 0 ? (
             <FatText text="검색 사진 없음" />
           ) : (
-            data.searchPost.map(post => null)
+            data.searchPost.map(post => (
+              <SquarePost
+                key={post.id}
+                likeCount={post.likeCount}
+                commentCount={post.commentCount}
+                file={post.files[0]}
+              />
+            ))
           )}
-        </Section>
+        </PostSection>
       </Wrapper>
     );
   }
